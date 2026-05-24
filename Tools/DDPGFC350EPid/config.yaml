@@ -1,0 +1,39 @@
+run_id: DDPG_14
+behaviors:
+  ddpg_fc_350_e_pid_agent:
+    trainer_type: ddpg_fc_350_e_pid
+    hyperparameters:
+      batch_size: 256
+      buffer_size: 200000
+      start_steps: 10000
+      update_after: 10000
+      actor_learning_rate: 0.0001
+      critic_learning_rate: 0.001
+      gamma: 0.99
+      tau: 0.005
+      update_every: 2
+      exploration_noise: 0.12
+      exploration_noise_min: 0.01
+      exploration_noise_decay_steps: 1200000
+      action_l2_weight: 0.0001
+    network_settings:
+      normalize: false
+      hidden_units: 350
+      num_layers: 2
+      activation: elu
+    max_steps: 3500000
+    summary_freq: 10000
+    save_freq: 100000
+    progress_step_mode: environment
+
+environment:
+  worker_id: 0
+  num_envs: 5
+  no_graphics: true
+  timeout_wait: 60
+  width: 84
+  height: 84
+  quality_level: 1
+  time_scale: 50 
+  target_frame_rate: -1
+  capture_frame_rate: 60

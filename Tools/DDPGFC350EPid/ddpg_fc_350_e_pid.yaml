@@ -1,0 +1,32 @@
+behavior_name: ddpg_fc_350_e_pid_agent
+run_id: ddpg_fc_350_e_pid
+seed: 1
+
+network:
+  hidden_units: 350
+  num_layers: 2
+  activation: elu
+
+training:
+  max_steps: 3500000
+  start_steps: 5000
+  update_after: 5000
+  update_every: 1
+  batch_size: 256
+  replay_buffer_size: 1000000
+  gamma: 0.99
+  tau: 0.005
+  actor_learning_rate: 0.0001
+  critic_learning_rate: 0.001
+  exploration_noise: 0.2
+  exploration_noise_min: 0.02
+  exploration_noise_decay_steps: 1500000
+  action_l2_weight: 0.0001
+  summary_freq: 10000
+  save_freq: 100000
+
+environment:
+  worker_id: 0
+  num_envs: 1
+  no_graphics: true
+  timeout_wait: 60
